@@ -34,21 +34,38 @@ func _process(delta: float):
 	if not _mov and _stop:
 		if _char_body.velocity.x != 0:
 			if _up:
-				_move_body(position.y - 20, 0.3, false, true)
+				_body_tween_up()
 			elif _down:
-				_move_body(position.y + 20, 0.3, true, false)
+				_body_tween_down()
 	if Input.is_action_pressed("ui_left") == Input.is_action_pressed("ui_right") and _body_tween != null:
 		_body_tween.kill()
-		_move_body(_default_y, 0.2, true,false)
+		_body_tween_default()
 		_stop = false
 
-func _move_body(pos, time, up, down):
+
+func _body_tween_default():
 	_mov = true
-	_down = down
-	_body_tween = get_tree().create_tween();
-	await _body_tween.tween_property($".", "position:y", pos, time).finished
+	_down = false
+	var tw = get_tree().create_tween();
+	await tw.tween_property($".", "position:y", _default_y, 0.2).finished
 	_mov = false
-	_up = up
+	_up = true
+
+func _body_tween_down():
+	_mov = true
+	_down = false
+	_body_tween = get_tree().create_tween();
+	await _body_tween.tween_property($".", "position:y", position.y + 20, 0.3).finished
+	_mov = false
+	_up = true
+
+func _body_tween_up():
+	_mov = true
+	_up = false
+	_body_tween = get_tree().create_tween();
+	await _body_tween.tween_property($".", "position:y", position.y - 20, 0.3).finished
+	_mov = false
+	_down = true
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("dbg1"):

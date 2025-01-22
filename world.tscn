@@ -1,8 +1,8 @@
 [gd_scene load_steps=6 format=3 uid="uid://bv38g4h1b0oev"]
 
 [ext_resource type="Script" path="res://dude.gd" id="1_n2pm0"]
-[ext_resource type="Script" path="res://body.gd" id="1_r8vby"]
-[ext_resource type="Script" path="res://leg.gd" id="2_nxicw"]
+[ext_resource type="Script" path="res://bodyparts/body.gd" id="1_r8vby"]
+[ext_resource type="Script" path="res://bodyparts/leg.gd" id="2_nxicw"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_efkgx"]
 size = Vector2(133, 20)
