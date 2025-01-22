@@ -1,0 +1,39 @@
+[gd_scene load_steps=6 format=3 uid="uid://bv38g4h1b0oev"]
+
+[ext_resource type="Script" path="res://dude.gd" id="1_n2pm0"]
+[ext_resource type="Script" path="res://body.gd" id="1_r8vby"]
+[ext_resource type="Script" path="res://leg.gd" id="2_nxicw"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_efkgx"]
+size = Vector2(133, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1r2ma"]
+size = Vector2(1004, 100)
+
+[node name="World" type="Node2D"]
+
+[node name="Dude" type="CharacterBody2D" parent="."]
+script = ExtResource("1_n2pm0")
+
+[node name="Body" type="Line2D" parent="Dude"]
+points = PackedVector2Array(-1, -63, -1, 67)
+script = ExtResource("1_r8vby")
+
+[node name="Leg" type="Line2D" parent="Dude/Body"]
+script = ExtResource("2_nxicw")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Dude"]
+position = Vector2(0, 150)
+shape = SubResource("RectangleShape2D_efkgx")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(0, 259)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+shape = SubResource("RectangleShape2D_1r2ma")
+
+[node name="Line2D" type="Line2D" parent="StaticBody2D"]
+points = PackedVector2Array(-503, -50, 502, -50)
+default_color = Color(0.786423, 0.628754, 0.858716, 1)
